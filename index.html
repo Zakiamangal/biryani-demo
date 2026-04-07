@@ -3,328 +3,358 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biryani Recipe Guide</title>
+  <title>Bawar Biryani - Order Now</title>
+
+  <!-- Social Media Preview (Open Graph) -->
+  <meta property="og:title" content="Bawar Biryani - Authentic Afghan Biryani">
+  <meta property="og:description" content="The best biryani in town! Order now on WhatsApp. Starting from 100 Afghani per plate.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=1200&h=630&fit=crop">
+
+  <!-- Instagram/Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bawar Biryani - Authentic Afghan Biryani">
+  <meta name="twitter:description" content="Order the best biryani on WhatsApp! Starting from 100 AFN.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=1200&h=630&fit=crop">
+
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap');
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #1a1a2e;
+      font-family: 'Inter', sans-serif;
+      background: #0d0d0d;
       color: #e0e0e0;
+    }
+
+    /* Hero Section */
+    .hero {
       min-height: 100vh;
+      background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)),
+                  url('https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=1400&q=80') center/cover no-repeat;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 2rem;
+      position: relative;
     }
-    header {
+    .hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 120px; background: linear-gradient(transparent, #0d0d0d);
+    }
+    .brand-badge {
+      background: rgba(233,69,96,0.15); border: 1px solid #e94560;
+      padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.85rem;
+      color: #e94560; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: #fff; margin-bottom: 0.8rem;
+      text-shadow: 2px 4px 20px rgba(0,0,0,0.5);
+    }
+    .hero h1 span { color: #e94560; }
+    .hero p {
+      font-size: 1.2rem; color: #ccc; max-width: 500px; margin-bottom: 2rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; z-index: 1; }
+    .btn {
+      padding: 0.9rem 2rem; border: none; border-radius: 50px;
+      font-size: 1.05rem; font-weight: 600; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+    .btn-whatsapp { background: #25d366; color: #fff; }
+    .btn-menu { background: transparent; color: #fff; border: 2px solid #fff; }
+    .btn-menu:hover { background: #fff; color: #0d0d0d; }
+
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: #25d366; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+      z-index: 1000; text-decoration: none;
+      animation: pulse 2s infinite;
+    }
+    .whatsapp-float svg { width: 32px; height: 32px; fill: #fff; }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 4px 15px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); }
+    }
+
+    /* Section styling */
+    section { padding: 4rem 1.5rem; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; text-align: center; margin-bottom: 0.5rem; color: #fff;
+    }
+    .section-subtitle {
+      text-align: center; color: #888; margin-bottom: 2.5rem; font-size: 1rem;
+    }
+    .section-line {
+      width: 60px; height: 3px; background: #e94560; margin: 0 auto 2rem; border-radius: 2px;
+    }
+
+    /* Menu Section */
+    #menu { background: #111; }
+    .menu-grid {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;
+    }
+    .menu-card {
+      background: #1a1a1a; border-radius: 16px; overflow: hidden;
+      border: 1px solid #222; transition: transform 0.3s, border-color 0.3s;
+    }
+    .menu-card:hover { transform: translateY(-5px); border-color: #e94560; }
+    .menu-card img {
+      width: 100%; height: 200px; object-fit: cover;
+    }
+    .menu-card-body { padding: 1.2rem; }
+    .menu-card h3 { font-size: 1.2rem; color: #fff; margin-bottom: 0.3rem; }
+    .menu-card .desc { color: #888; font-size: 0.9rem; margin-bottom: 0.8rem; line-height: 1.5; }
+    .menu-card .price-row {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .menu-card .price {
+      font-size: 1.3rem; font-weight: 700; color: #e94560;
+    }
+    .menu-card .order-btn {
+      padding: 0.5rem 1rem; background: #25d366; color: #fff;
+      border: none; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem;
+      transition: 0.2s;
+    }
+    .menu-card .order-btn:hover { background: #1da851; }
+
+    /* About Section */
+    #about { background: #0d0d0d; }
+    .about-content {
+      max-width: 700px; margin: 0 auto; text-align: center;
+      line-height: 1.8; color: #aaa; font-size: 1.05rem;
+    }
+    .stats {
+      display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2.2rem; font-weight: 700; color: #e94560; }
+    .stat-label { color: #888; font-size: 0.85rem; margin-top: 0.2rem; }
+
+    /* How to Order */
+    #how { background: #111; }
+    .steps-row {
+      max-width: 800px; margin: 0 auto;
+      display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
+    }
+    .order-step {
+      text-align: center; flex: 1; min-width: 180px;
+    }
+    .step-circle {
+      width: 70px; height: 70px; border-radius: 50%;
       background: linear-gradient(135deg, #e94560, #c2185b);
-      text-align: center;
-      padding: 2.5rem 1rem;
-    }
-    header h1 { font-size: 2.5rem; color: #fff; }
-    header p { color: #ffcdd2; margin-top: 0.5rem; font-size: 1.1rem; }
-
-    .container { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
-
-    /* Tabs */
-    .tabs {
-      display: flex; gap: 0.5rem; flex-wrap: wrap;
-      border-bottom: 2px solid #e94560; padding-bottom: 0.5rem; margin-bottom: 1.5rem;
-    }
-    .tab-btn {
-      padding: 0.6rem 1.2rem; border: none; border-radius: 8px 8px 0 0;
-      background: #16213e; color: #aaa; cursor: pointer; font-size: 1rem;
-      transition: all 0.3s;
-    }
-    .tab-btn.active, .tab-btn:hover { background: #e94560; color: #fff; }
-    .tab-content { display: none; animation: fadeIn 0.4s; }
-    .tab-content.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-    /* Cards */
-    .card {
-      background: #16213e; border-radius: 12px; padding: 1.5rem;
-      margin-bottom: 1.2rem; border-left: 4px solid #e94560;
-    }
-    .card h3 { color: #e94560; margin-bottom: 0.5rem; }
-
-    /* Ingredients */
-    .ingredient-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;
-    }
-    .ingredient-item {
-      background: #0f3460; border-radius: 8px; padding: 0.8rem 1rem;
-      display: flex; align-items: center; gap: 0.6rem;
-    }
-    .ingredient-item .dot {
-      width: 10px; height: 10px; border-radius: 50%; background: #e94560; flex-shrink: 0;
-    }
-
-    /* Steps */
-    .step {
-      display: flex; gap: 1rem; margin-bottom: 1.2rem; align-items: flex-start;
-    }
-    .step-num {
-      width: 40px; height: 40px; border-radius: 50%; background: #e94560;
       display: flex; align-items: center; justify-content: center;
-      font-weight: bold; font-size: 1.1rem; flex-shrink: 0;
+      margin: 0 auto 1rem; font-size: 1.8rem;
     }
-    .step-text { flex: 1; line-height: 1.6; }
-    .step-text strong { color: #ff8a80; }
+    .order-step h4 { color: #fff; margin-bottom: 0.3rem; }
+    .order-step p { color: #888; font-size: 0.9rem; }
 
-    /* Timer */
-    .timer-section { text-align: center; margin: 2rem 0; }
-    .timer-display {
-      font-size: 3rem; font-weight: bold; color: #e94560;
-      font-variant-numeric: tabular-nums;
+    /* CTA Section */
+    .cta {
+      background: linear-gradient(135deg, #e94560, #c2185b);
+      text-align: center; padding: 3rem 1.5rem;
     }
-    .timer-label { color: #aaa; margin-bottom: 0.5rem; }
-    .timer-btns { margin-top: 1rem; display: flex; gap: 0.5rem; justify-content: center; }
-    .timer-btns button {
-      padding: 0.5rem 1.5rem; border: none; border-radius: 8px;
-      font-size: 1rem; cursor: pointer; transition: 0.2s;
+    .cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; color: #fff; margin-bottom: 0.5rem;
     }
-    .btn-start { background: #4caf50; color: #fff; }
-    .btn-pause { background: #ff9800; color: #fff; }
-    .btn-reset { background: #607d8b; color: #fff; }
-    .timer-presets { margin-top: 0.8rem; display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
-    .preset-btn {
-      padding: 0.3rem 0.8rem; border: 1px solid #e94560; background: transparent;
-      color: #e94560; border-radius: 6px; cursor: pointer; font-size: 0.85rem;
+    .cta p { color: #ffcdd2; margin-bottom: 1.5rem; font-size: 1.1rem; }
+    .btn-cta {
+      padding: 1rem 2.5rem; background: #25d366; color: #fff;
+      border: none; border-radius: 50px; font-size: 1.15rem; font-weight: 700;
+      cursor: pointer; text-decoration: none; display: inline-flex;
+      align-items: center; gap: 0.5rem; transition: 0.2s;
     }
-    .preset-btn:hover { background: #e94560; color: #fff; }
+    .btn-cta:hover { background: #1da851; transform: scale(1.05); }
 
-    /* Variations table */
-    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    th { background: #e94560; color: #fff; padding: 0.7rem; text-align: left; }
-    td { padding: 0.7rem; border-bottom: 1px solid #2a2a4a; }
-    tr:hover td { background: #1a1a3e; }
-
-    /* Tips */
-    .tip {
-      background: #0f3460; border-radius: 8px; padding: 1rem;
-      margin-bottom: 0.8rem; position: relative; padding-left: 2.5rem;
-    }
-    .tip::before {
-      content: '\2728'; position: absolute; left: 0.8rem; top: 1rem;
-    }
-
+    /* Footer */
     footer {
-      text-align: center; padding: 1.5rem; color: #555; font-size: 0.85rem;
+      background: #0a0a0a; text-align: center; padding: 2rem 1rem;
+      color: #555; font-size: 0.85rem;
+    }
+    footer a { color: #e94560; text-decoration: none; }
+
+    /* WhatsApp icon SVG inline */
+    .wa-icon {
+      width: 20px; height: 20px; display: inline-block; vertical-align: middle;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Biryani Master Class</h1>
-  <p>A step-by-step interactive guide to making perfect biryani</p>
-</header>
+<!-- Floating WhatsApp Button -->
+<a class="whatsapp-float" href="https://wa.me/93778160109?text=Salam!%20I%20want%20to%20order%20biryani%20from%20Bawar%20Biryani" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
-<div class="container">
-  <div class="tabs">
-    <button class="tab-btn active" onclick="showTab('ingredients')">Ingredients</button>
-    <button class="tab-btn" onclick="showTab('steps')">Steps</button>
-    <button class="tab-btn" onclick="showTab('timer')">Cook Timer</button>
-    <button class="tab-btn" onclick="showTab('variations')">Variations</button>
-    <button class="tab-btn" onclick="showTab('tips')">Pro Tips</button>
+<!-- HERO -->
+<section class="hero">
+  <div class="brand-badge">Authentic Afghan Biryani</div>
+  <h1><span>Bawar</span> Biryani</h1>
+  <p>Made with love, served with pride. The finest biryani delivered straight to you.</p>
+  <div class="hero-btns">
+    <a class="btn btn-whatsapp" href="https://wa.me/93778160109?text=Salam!%20I%20want%20to%20order%20biryani%20from%20Bawar%20Biryani" target="_blank" rel="noopener">
+      <svg class="wa-icon" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Order on WhatsApp
+    </a>
+    <a class="btn btn-menu" href="#menu">View Menu</a>
   </div>
+</section>
 
-  <!-- INGREDIENTS -->
-  <div id="ingredients" class="tab-content active">
-    <div class="card">
-      <h3>Rice</h3>
-      <div class="ingredient-grid">
-        <div class="ingredient-item"><span class="dot"></span> 2 cups basmati rice</div>
-        <div class="ingredient-item"><span class="dot"></span> Water for soaking</div>
-        <div class="ingredient-item"><span class="dot"></span> 1 tbsp salt (for boiling)</div>
-        <div class="ingredient-item"><span class="dot"></span> 2 bay leaves</div>
-        <div class="ingredient-item"><span class="dot"></span> 4 green cardamom</div>
-        <div class="ingredient-item"><span class="dot"></span> 4 cloves</div>
-        <div class="ingredient-item"><span class="dot"></span> 1 inch cinnamon stick</div>
-      </div>
-    </div>
-    <div class="card">
-      <h3>Meat / Protein</h3>
-      <div class="ingredient-grid">
-        <div class="ingredient-item"><span class="dot"></span> 500g chicken or goat</div>
-        <div class="ingredient-item"><span class="dot"></span> 1 cup yogurt</div>
-        <div class="ingredient-item"><span class="dot"></span> 2 onions, sliced thin</div>
-        <div class="ingredient-item"><span class="dot"></span> 2 tbsp ginger-garlic paste</div>
-        <div class="ingredient-item"><span class="dot"></span> 2 green chilies</div>
-        <div class="ingredient-item"><span class="dot"></span> 1 tsp red chili powder</div>
-        <div class="ingredient-item"><span class="dot"></span> 1 tsp turmeric</div>
-        <div class="ingredient-item"><span class="dot"></span> 1 tsp garam masala</div>
-        <div class="ingredient-item"><span class="dot"></span> Salt to taste</div>
-      </div>
-    </div>
-    <div class="card">
-      <h3>Layering & Finishing</h3>
-      <div class="ingredient-grid">
-        <div class="ingredient-item"><span class="dot"></span> Pinch of saffron in warm milk</div>
-        <div class="ingredient-item"><span class="dot"></span> 2 tbsp ghee</div>
-        <div class="ingredient-item"><span class="dot"></span> Fresh mint leaves</div>
-        <div class="ingredient-item"><span class="dot"></span> Fresh cilantro</div>
-        <div class="ingredient-item"><span class="dot"></span> Fried onions (birista)</div>
-        <div class="ingredient-item"><span class="dot"></span> 1 tsp kewra water (optional)</div>
-      </div>
-    </div>
-  </div>
+<!-- MENU -->
+<section id="menu">
+  <h2 class="section-title">Our Menu</h2>
+  <p class="section-subtitle">Freshly cooked, packed with flavor</p>
+  <div class="section-line"></div>
+  <div class="menu-grid">
 
-  <!-- STEPS -->
-  <div id="steps" class="tab-content">
-    <div class="card">
-      <h3>Preparation</h3>
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text"><strong>Wash & soak rice</strong> in cold water for 30 minutes. This helps grains cook long and separate.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text"><strong>Marinate the meat</strong> with yogurt, ginger-garlic paste, chili powder, turmeric, garam masala, salt, half the mint and cilantro. Rest at least 1 hour (overnight is best).</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-text"><strong>Fry onions</strong> in oil until deep golden-brown and crispy. Set aside &mdash; these are your <em>birista</em>.</div>
-      </div>
-    </div>
-    <div class="card">
-      <h3>Cooking</h3>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-text"><strong>Par-boil the rice</strong> with whole spices (bay leaves, cardamom, cloves, cinnamon) in salted water until 70% cooked. Drain immediately.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">5</div>
-        <div class="step-text"><strong>Cook the marinated meat</strong> on medium heat until it's 80% done and the masala has reduced. About 15&ndash;20 minutes.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">6</div>
-        <div class="step-text"><strong>Layer it up:</strong> Spread meat on the bottom. Add a layer of par-boiled rice. Sprinkle fried onions, mint, cilantro, saffron milk, ghee. Repeat if enough rice.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">7</div>
-        <div class="step-text"><strong>Dum (steam cook):</strong> Seal the pot with foil or dough, cover with a tight lid. Cook on <em>high heat for 3 minutes</em>, then <em>very low heat for 25 minutes</em>. Do NOT open the lid.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">8</div>
-        <div class="step-text"><strong>Rest & serve:</strong> Turn off heat, let it rest 5 minutes. Gently mix layers bottom-to-top. Garnish with remaining fried onions and serve with raita.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TIMER -->
-  <div id="timer" class="tab-content">
-    <div class="card">
-      <h3>Cooking Timer</h3>
-      <div class="timer-section">
-        <div class="timer-label" id="timerLabel">Set a timer for each stage</div>
-        <div class="timer-display" id="timerDisplay">00:00</div>
-        <div class="timer-btns">
-          <button class="btn-start" onclick="startTimer()">Start</button>
-          <button class="btn-pause" onclick="pauseTimer()">Pause</button>
-          <button class="btn-reset" onclick="resetTimer()">Reset</button>
-        </div>
-        <div class="timer-presets">
-          <button class="preset-btn" onclick="setTimer(30,'Rice Soaking')">Soak 30m</button>
-          <button class="preset-btn" onclick="setTimer(60,'Marination')">Marinate 1h</button>
-          <button class="preset-btn" onclick="setTimer(8,'Par-boil Rice')">Par-boil 8m</button>
-          <button class="preset-btn" onclick="setTimer(20,'Cook Meat')">Meat 20m</button>
-          <button class="preset-btn" onclick="setTimer(3,'Dum — High Heat')">Dum High 3m</button>
-          <button class="preset-btn" onclick="setTimer(25,'Dum — Low Heat')">Dum Low 25m</button>
-          <button class="preset-btn" onclick="setTimer(5,'Resting')">Rest 5m</button>
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&q=80" alt="Chicken Biryani">
+      <div class="menu-card-body">
+        <h3>Chicken Biryani</h3>
+        <p class="desc">Tender chicken pieces layered with fragrant basmati rice, saffron, and aromatic spices.</p>
+        <div class="price-row">
+          <span class="price">100 AFN</span>
+          <a class="order-btn" href="https://wa.me/93778160109?text=Salam!%20I%20want%20to%20order%20*Chicken%20Biryani*%20(100%20AFN)" target="_blank" rel="noopener">Order</a>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- VARIATIONS -->
-  <div id="variations" class="tab-content">
-    <div class="card">
-      <h3>Popular Biryani Styles</h3>
-      <table>
-        <thead>
-          <tr><th>Style</th><th>Region</th><th>Key Difference</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Hyderabadi (Kacchi)</td><td>Telangana</td><td>Raw marinated meat layered with raw rice, cooked together on dum</td></tr>
-          <tr><td>Lucknowi (Pakki)</td><td>Uttar Pradesh</td><td>Meat and rice cooked separately, then layered &mdash; milder, aromatic</td></tr>
-          <tr><td>Kolkata</td><td>West Bengal</td><td>Lighter spices, includes potatoes and eggs, subtle rose water</td></tr>
-          <tr><td>Malabar</td><td>Kerala</td><td>Uses kaima/jeerakasala rice, coconut-forward flavors</td></tr>
-          <tr><td>Sindhi</td><td>Sindh / Pakistan</td><td>Tangy with tomatoes, potatoes, and dried plums (aloo bukhara)</td></tr>
-          <tr><td>Ambur</td><td>Tamil Nadu</td><td>Seeraga samba rice, minimal spices, very dry texture</td></tr>
-          <tr><td>Dindigul</td><td>Tamil Nadu</td><td>Tangy with curd and lemon, uses cube-cut meat</td></tr>
-          <tr><td>Thalassery</td><td>Kerala</td><td>Kaima rice, ghee-rich, cashew garnish</td></tr>
-        </tbody>
-      </table>
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1642821373181-696a54913e93?w=600&q=80" alt="Mutton Biryani">
+      <div class="menu-card-body">
+        <h3>Mutton Biryani</h3>
+        <p class="desc">Slow-cooked mutton with rich gravy, layered with perfectly spiced basmati rice.</p>
+        <div class="price-row">
+          <span class="price">100 AFN</span>
+          <a class="order-btn" href="https://wa.me/93778160109?text=Salam!%20I%20want%20to%20order%20*Mutton%20Biryani*%20(100%20AFN)" target="_blank" rel="noopener">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=600&q=80" alt="Kabuli Pulao">
+      <div class="menu-card-body">
+        <h3>Kabuli Pulao</h3>
+        <p class="desc">Traditional Afghan pulao with tender lamb, raisins, carrots, and cardamom-infused rice.</p>
+        <div class="price-row">
+          <span class="price">100 AFN</span>
+          <a class="order-btn" href="https://wa.me/93778160109?text=Salam!%20I%20want%20to%20order%20*Kabuli%20Pulao*%20(100%20AFN)" target="_blank" rel="noopener">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&q=80" alt="Veggie Biryani">
+      <div class="menu-card-body">
+        <h3>Veggie Biryani</h3>
+        <p class="desc">Mixed seasonal vegetables with aromatic rice, paneer cubes, and fresh herbs.</p>
+        <div class="price-row">
+          <span class="price">100 AFN</span>
+          <a class="order-btn" href="https://wa.me/93778160109?text=Salam!%20I%20want%20to%20order%20*Veggie%20Biryani*%20(100%20AFN)" target="_blank" rel="noopener">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1574653853027-5382a3d23a15?w=600&q=80" alt="Special Biryani">
+      <div class="menu-card-body">
+        <h3>Bawar Special Biryani</h3>
+        <p class="desc">Our signature dish! Extra meat, extra saffron, topped with nuts and fried onions.</p>
+        <div class="price-row">
+          <span class="price">100 AFN</span>
+          <a class="order-btn" href="https://wa.me/93778160109?text=Salam!%20I%20want%20to%20order%20*Bawar%20Special%20Biryani*%20(100%20AFN)" target="_blank" rel="noopener">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=600&q=80" alt="Biryani Family Pack">
+      <div class="menu-card-body">
+        <h3>Family Pack (4 plates)</h3>
+        <p class="desc">Feed the whole family! Choose any biryani style. Comes with raita and salad.</p>
+        <div class="price-row">
+          <span class="price">350 AFN</span>
+          <a class="order-btn" href="https://wa.me/93778160109?text=Salam!%20I%20want%20to%20order%20*Family%20Pack%20-%204%20plates*%20(350%20AFN)" target="_blank" rel="noopener">Order</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW TO ORDER -->
+<section id="how">
+  <h2 class="section-title">How to Order</h2>
+  <p class="section-subtitle">It's as easy as 1-2-3</p>
+  <div class="section-line"></div>
+  <div class="steps-row">
+    <div class="order-step">
+      <div class="step-circle">1</div>
+      <h4>Choose</h4>
+      <p>Pick your favorite biryani from our menu above</p>
+    </div>
+    <div class="order-step">
+      <div class="step-circle">2</div>
+      <h4>WhatsApp</h4>
+      <p>Click "Order" and it opens WhatsApp with your order</p>
+    </div>
+    <div class="order-step">
+      <div class="step-circle">3</div>
+      <h4>Enjoy!</h4>
+      <p>We confirm, prepare, and deliver your fresh biryani</p>
     </div>
   </div>
+</section>
 
-  <!-- TIPS -->
-  <div id="tips" class="tab-content">
-    <div class="card">
-      <h3>Secrets to Perfect Biryani</h3>
-      <div class="tip"><strong>Always use aged basmati.</strong> Aged rice absorbs less water and stays longer &mdash; look for "extra long grain" aged 1&ndash;2 years.</div>
-      <div class="tip"><strong>Don't skip the soak.</strong> 30 minutes minimum. This pre-hydrates the grain so it cooks evenly and won't break.</div>
-      <div class="tip"><strong>70% rule for rice.</strong> Par-boil until each grain is soft outside but has a tiny chalky core when you bite it. It finishes on dum.</div>
-      <div class="tip"><strong>Low and slow dum.</strong> After the initial 3 min on high, use the lowest flame possible. Place a tawa (flat pan) under the pot to diffuse heat.</div>
-      <div class="tip"><strong>Seal matters.</strong> Use aluminum foil under the lid, or a flour-water dough seal. Steam must stay trapped inside.</div>
-      <div class="tip"><strong>Onions = flavor backbone.</strong> Fry them low and slow until mahogany brown. Burnt onions will make the biryani bitter.</div>
-      <div class="tip"><strong>Saffron hack:</strong> Soak a few strands in 2 tbsp warm milk for 15 min. Drizzle only on the top layer for color contrast.</div>
-      <div class="tip"><strong>Rest before serving.</strong> 5 minutes off heat lets the steam redistribute. The bottom layer finishes cooking in residual heat.</div>
-      <div class="tip"><strong>Gentle mixing.</strong> Use a flat spatula and fold from the edges inward, bottom to top. Never stir &mdash; you'll mush the rice.</div>
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="section-title">About Bawar Biryani</h2>
+  <p class="section-subtitle">Taste the tradition</p>
+  <div class="section-line"></div>
+  <div class="about-content">
+    <p>At Bawar Biryani, we believe every plate tells a story. Our recipes blend authentic Afghan and South Asian flavors, using only the freshest ingredients and traditional cooking methods. Every biryani is cooked on dum — slow-steamed to perfection.</p>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Fresh Ingredients</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Biryani Varieties</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">30min</div>
+        <div class="stat-label">Fast Delivery</div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<footer>Personal learning project &mdash; not for team use</footer>
+<!-- CTA -->
+<section class="cta">
+  <h2>Hungry? Order Now!</h2>
+  <p>One tap away from the best biryani you've ever had</p>
+  <a class="btn-cta" href="https://wa.me/93778160109?text=Salam!%20I%20want%20to%20order%20biryani%20from%20Bawar%20Biryani" target="_blank" rel="noopener">
+    <svg class="wa-icon" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Order on WhatsApp
+  </a>
+</section>
 
-<script>
-  // Tabs
-  function showTab(id) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    event.target.classList.add('active');
-  }
+<footer>
+  <p>&copy; 2026 Bawar Biryani. All rights reserved.</p>
+  <p style="margin-top:0.5rem;">
+    <a href="https://wa.me/93778160109" target="_blank" rel="noopener">WhatsApp: +93 778 160 109</a>
+  </p>
+</footer>
 
-  // Timer
-  let timerSeconds = 0;
-  let timerInterval = null;
-  let running = false;
-
-  function setTimer(minutes, label) {
-    clearInterval(timerInterval);
-    running = false;
-    timerSeconds = minutes * 60;
-    document.getElementById('timerLabel').textContent = label;
-    updateDisplay();
-  }
-
-  function updateDisplay() {
-    const m = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
-    const s = String(timerSeconds % 60).padStart(2, '0');
-    document.getElementById('timerDisplay').textContent = `${m}:${s}`;
-  }
-
-  function startTimer() {
-    if (running || timerSeconds <= 0) return;
-    running = true;
-    timerInterval = setInterval(() => {
-      timerSeconds--;
-      updateDisplay();
-      if (timerSeconds <= 0) {
-        clearInterval(timerInterval);
-        running = false;
-        document.getElementById('timerLabel').textContent = 'Done!';
-        try { new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1pZ2hti46,k5ycm5eSjYmFg4OEhYiMkJSXmZqbm5qYlZKPjImHhoaHiIqNkJOWmJqcnJybmZaUkY6LiYeGhoaIioyPkpWYmpydnZ2cmpiVko+MioeGhYaHiYuOkZSXmpydnp6dnJqYlZKPjIqIh4aGh4mLjpGUl5qcnZ6enZyamJWSkI2LiYeGhoeJi46RlJeanJ2enp2cmpqXlJKPjYuJiIeHiImLjpGUl5qcnp+fn56cmpiWk5CPjYuKiIiHiImLjZCTlpmdnp+goJ+enJqXlZKQjo2LiomIiImKjI+SlZibnp+hoaGgnpyamJWTkY+OjIuKiYmJiouNkJOWmZyfoKGioaCenJqYlpOSkI6NjIuKiomJiouOkJOWmZyfoKKioqGfnZuZl5WTkY+OjYyLi4qKiouNj5KVmJueoKKjo6KhoJ6cmpmXlZOSkI+OjYyLi4uKi4yOkJOWmZyfoaOkpKOioJ6cmpmXlpSTkpGQj46NjYyMjI2Oj5KVmJueoKKkpaWko6GfnZuamJeWlJOSkZCPj46OjY2NjY6PkZOWmJueoKKkpaamo6KgnpyamJeWlZSTkpGQkI+Pjo6Ojo6PkJKUl5mdoKKkpqenpaOhn52bmpmXlpWUk5OSkZGQkJCPj4+PkJGTlZibnqCjpaanp6ajop+dnJqZmJeWlZSUk5OSkpGRkZGRkZGSk5WXmp2goqSmqKiopqSin56cmpmYl5aWlZWUlJOTk5OSkpKSkpKTlJaYm52goqWnqKmopaOhn56cmpmYl5eWlpaVlZWUlJSUlJOTk5OUlZaYmp2foqSmqKqqqKajop+enJuamZiXl5eWlpaWlpWVlZWVlZWVlZaXmJqcn6GkpqiqqqmnpaShnp2cmpmZmJeXl5eXl5aWl5eWlpaWlpeXmJmanJ6hpKaoqqurqainpKKgnp2cmpmZmJiYmJiYmJiYmJiYmJiYmJiZmpyeoKOlqKqsrKupp6WjoJ+enJuampmZmZmZmZmZmZmZmZmZmZmZmpudn6KkpqmrrK2sq6mnpKKgnp2cm5qampmam5uampqampqampqampucnZ+ipKaqrK2uraupp6WjoaCenZybm5ubm5ubm5ubm5ubm5ubm5ubnJ2foaSmqKutrq6sq6mnpaSioJ+enZ2cnJycnJycnJycnJycnJycnJ2eoKKkp6msrq+vrauqp6WjoqCfnp2dnJycnJycnZ2dnZ2dnZ2dnZ2dnp+ho6aoq62vsLCurKqop6WjoqGgnp6enZ2dnZ2dnZ6enp6enp6enp6en6ChoqWnqqyur7GxsK6sqainpaOioaCfn5+fn5+fn5+fn5+fn5+fn5+foKGjpaepq62vsLGxr62rqainpaSjoqGgoKCgoKCgoKCgoKCgoKCgoKCgoKGio6WnqautrxA=').play(); } catch(e) {}
-      }
-    }, 1000);
-  }
-
-  function pauseTimer() { clearInterval(timerInterval); running = false; }
-
-  function resetTimer() {
-    clearInterval(timerInterval); running = false; timerSeconds = 0;
-    document.getElementById('timerLabel').textContent = 'Set a timer for each stage';
-    updateDisplay();
-  }
-</script>
 </body>
 </html>
